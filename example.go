@@ -93,7 +93,7 @@ func main() {
     newAppTCP := goluminate.AppTcpCreateRequest{Name: "test AppD", Type: "TCP",IsVisible: true,IsNotificationEnabled: true}
     var TcpAppPortList   []string
     TcpAppPortList  = append(TcpAppPortList, "3306")
-    newAppTCP.TcpTunnelSettings = append(newAppTCP.TcpTunnelSettings, luminate.TcpTunnelSettings{Target: "test.local.com", Ports: TcpAppPortList})
+    newAppTCP.TcpTunnelSettings = append(newAppTCP.TcpTunnelSettings, goluminate.TcpTunnelSettings{Target: "test.local.com", Ports: TcpAppPortList})
     
     TCPApp, _, err := client.CreateApp(ctx,newAppTCP)
     if err != nil {
