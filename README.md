@@ -17,7 +17,7 @@ Construct a new luminate client, then use the various services on the client to
 access different parts of the  API. For example:
 
 ```go
-client := luminate.NewClient(ctx, ClientID, ClientSecret, TenantName)
+client := goluminate.NewClient(ctx, ClientID, ClientSecret, TenantName)
 
 // list all application
 applist, _, err := client.ListApp(ctx, "")
