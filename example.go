@@ -33,12 +33,12 @@ func main() {
 
 
 // create new client
-    client := luminate.NewClient(ctx, ClientID, ClientSecret, TenantName)
+    client := goluminate.NewClient(ctx, ClientID, ClientSecret, TenantName)
 
 
 
 // -- New Site
-    site := NewSiteRequest{Name: SiteName}
+    site := goluminate.NewSiteRequest{Name: SiteName}
     newSite, _, err := client.CreateSite(ctx,site)
     if err != nil {
        panic(err)
@@ -46,7 +46,7 @@ func main() {
     fmt.Println(newSite.ID)
 
 // -- New Connector
-    connector := NewConnectorRequest{Name: ConnectorName, Version: "1.0"}
+    connector := goluminate.NewConnectorRequest{Name: ConnectorName, Version: "1.0"}
     newConnector, _, err := client.CreateConnector(ctx,connector,newSite.ID)
     if err != nil {
        panic(err)
@@ -55,7 +55,7 @@ func main() {
 
 
 // -- Install K8S 
-    connectorGetCommand := ConnectorCommandRequest{ConnectorName: ConnectorName}
+    connectorGetCommand := goluminate.ConnectorCommandRequest{ConnectorName: ConnectorName}
     ConnectorInstall, _, err := client.GetConnectorCommand(ctx,connectorGetCommand,newConnector.ID)
     if err != nil {
        panic(err)
@@ -63,7 +63,7 @@ func main() {
     fmt.Println(ConnectorInstall.K8S)
 
 // -- Create http application
-    newAppHttp := AppHttpCreateRequest{Name: "test AppB", Type: "HTTP",IsVisible: true,IsNotificationEnabled: true}
+    newAppHttp := goluminate.AppHttpCreateRequest{Name: "test AppB", Type: "HTTP",IsVisible: true,IsNotificationEnabled: true}
     newAppHttp.ConnectionSettings.InternalAddress="http://test.local.com"
     newAppHttp.ConnectionSettings.CustomRootPath="/"
     newAppHttp.ConnectionSettings.HealthURL="/"
@@ -77,7 +77,7 @@ func main() {
     client.BindAppToSite(ctx,HttpApp.ID,newSite.ID)
 
 // -- Create ssh application
-    newAppSSH := AppSshCreateRequest{Name: "test AppC", Type: "SSH",IsVisible: true,IsNotificationEnabled: true}
+    newAppSSH := goluminate.AppSshCreateRequest{Name: "test AppC", Type: "SSH",IsVisible: true,IsNotificationEnabled: true}
     newAppSSH.ConnectionSettings.InternalAddress="tcp://test.local.com:22"
     newAppSSH.SSHSettings.UserAccounts = append(newAppSSH.SSHSettings.UserAccounts, SshUserAccounts{Name: "root"})
     SSHApp, _, err := client.CreateApp(ctx,newAppSSH)
@@ -90,7 +90,7 @@ func main() {
 
 
 // -- Create tcp application
-    newAppTCP := luminate.AppTcpCreateRequest{Name: "test AppD", Type: "TCP",IsVisible: true,IsNotificationEnabled: true}
+    newAppTCP := goluminate.AppTcpCreateRequest{Name: "test AppD", Type: "TCP",IsVisible: true,IsNotificationEnabled: true}
     var TcpAppPortList   []string
     TcpAppPortList  = append(TcpAppPortList, "3306")
     newAppTCP.TcpTunnelSettings = append(newAppTCP.TcpTunnelSettings, luminate.TcpTunnelSettings{Target: "test.local.com", Ports: TcpAppPortList})
