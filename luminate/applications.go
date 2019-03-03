@@ -9,7 +9,6 @@ package luminate
 import (
     "context"
     "net/http"
-    "golang.org/x/oauth2/clientcredentials"
 )
 
 type ApplicationList struct {
