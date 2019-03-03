@@ -9,6 +9,7 @@ package luminate
 import (
     "context"
     "net/http"
+    "time"
 )
 
 type NewConnectorRequest struct {
