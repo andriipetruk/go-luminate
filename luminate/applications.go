@@ -163,8 +163,6 @@ type TcpTunnelSettings struct {
 
 
 
-//  Ports  []string `json:"ports"`
-
 type AppCreateResponse struct {
     ID                    string      `json:"id"`
     CreatedOn             int64       `json:"createdOn"`
