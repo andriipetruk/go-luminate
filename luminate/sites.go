@@ -8,18 +8,7 @@ package luminate
 
 import (
     "context"
-    "log"
-    "bytes"
-    "encoding/json"
-    "time"
-    "fmt"
-    "io"
-    "io/ioutil"
-    "net/url"
     "net/http"
-    "net/http/httputil"
-    "strings"
-    "golang.org/x/oauth2/clientcredentials"
 )
 
 type NewSiteRequest struct {
