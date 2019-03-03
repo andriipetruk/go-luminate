@@ -1,7 +1,7 @@
 # go-luminate
 go-luminate is a Go client library for accessing the  [luminate.io](https://luminate.io/) API
 
-go-github requires Go version 1.9 or greater.
+go-luminate requires Go version 1.9 or greater.
 
 
 ## Usage ##
