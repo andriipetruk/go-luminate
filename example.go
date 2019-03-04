@@ -79,7 +79,7 @@ func main() {
 // -- Create ssh application
     newAppSSH := goluminate.AppSshCreateRequest{Name: "test AppC", Type: "SSH",IsVisible: true,IsNotificationEnabled: true}
     newAppSSH.ConnectionSettings.InternalAddress="tcp://test.local.com:22"
-    newAppSSH.SSHSettings.UserAccounts = append(newAppSSH.SSHSettings.UserAccounts, SshUserAccounts{Name: "root"})
+    newAppSSH.SSHSettings.UserAccounts = append(newAppSSH.SSHSettings.UserAccounts, goluminate.SshUserAccounts{Name: "root"})
     SSHApp, _, err := client.CreateApp(ctx,newAppSSH)
     if err != nil {
        panic(err)
