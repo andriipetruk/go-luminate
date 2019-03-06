@@ -10,6 +10,7 @@ package main
 import (
     "context"
     "fmt"
+    "strings"
     "github.com/andriipetruk/go-luminate/luminate"
 )
 
@@ -90,9 +91,13 @@ func main() {
 
 
 // -- Create tcp application
-    newAppTCP := goluminate.AppTcpCreateRequest{Name: "test AppD", Type: "TCP",IsVisible: true,IsNotificationEnabled: true}
+    tcpAppName := "test AppD"
+    newAppTCP := goluminate.AppTcpCreateRequest{Name: tcpAppName, Type: "TCP",IsVisible: true,IsNotificationEnabled: true}
     var TcpAppPortList   []string
     TcpAppPortList  = append(TcpAppPortList, "3306")
+    var subdomain string
+    subdomain = strings.Replace(tcpAppName, " ", "", -1)
+    newAppTCP.ConnectionSettings.Subdomain=strings.ToLower(subdomain)
     newAppTCP.TcpTunnelSettings = append(newAppTCP.TcpTunnelSettings, goluminate.TcpTunnelSettings{Target: "test.local.com", Ports: TcpAppPortList})
     
     TCPApp, _, err := client.CreateApp(ctx,newAppTCP)
