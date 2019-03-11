@@ -120,7 +120,7 @@ func main() {
 
 // Update site
 updatesite := goluminate.NewSiteRequest{Name: "updated", Description: "updated version"}
-_, _, err := client.UpdateSite(ctx,updatesite, newSite.ID")
+_, _, err := client.UpdateSite(ctx,updatesite, newSite.ID)
 if err != nil {
    panic(err)
 }
