@@ -120,13 +120,13 @@ func main() {
 
 // Update site
 updatesite := goluminate.NewSiteRequest{Name: "updated", Description: "updated version"}
-_, _, err := client.UpdateSite(ctx,updatesite, newSite.ID)
+_, _, err = client.UpdateSite(ctx,updatesite, newSite.ID)
 if err != nil {
    panic(err)
 }
 // Update connector
 updateconnector := goluminate.NewConnectorRequest{Name: "myupdate", Version: "1.0"}
-_, _, err := client.UpdateConnector(ctx,updateconnector, newConnector.ID)
+_, _, err = client.UpdateConnector(ctx,updateconnector, newConnector.ID)
 if err != nil {
    panic(err)
 }
@@ -134,7 +134,7 @@ if err != nil {
 updateAppSSH := goluminate.AppSshCreateRequest{Name: "test AppC updated", Type: "SSH",IsVisible: true,IsNotificationEnabled: true}
 updateAppSSH.ConnectionSettings.InternalAddress="tcp://newhost.local.com:22"
 updateAppSSH.SSHSettings.UserAccounts = append(updateAppSSH.SSHSettings.UserAccounts, goluminate.SshUserAccounts{Name: "ubuntu"})
-_, _, err := client.UpdateApp(ctx,updateAppSSH, SSHApp.ID)
+_, _, err = client.UpdateApp(ctx,updateAppSSH, SSHApp.ID)
 if err != nil {
    panic(err)
 }
