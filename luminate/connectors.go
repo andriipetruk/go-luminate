@@ -65,6 +65,21 @@ func (c *Client) CreateConnector(ctx context.Context, connector  NewConnectorReq
     return uResp, resp, nil
 }
 
+// https://luminatepublicapi.docs.apiary.io/#reference/connectors/v2connectorsconnectorid/update-connector.
+func (c *Client) UpdateConnector(ctx context.Context, connector  NewConnectorRequest, connectorID string) (*NewConnectorResponse, *http.Response, error) { 
+    
+    req, err := c.NewRequest("PUT", "/v2/connectors/"+connectorID, connector)
+    if err != nil {
+        return nil, nil, err
+    }
+    uResp := new(NewConnectorResponse)
+    resp, err := c.Do(ctx, req, uResp)
+    if err != nil {
+        return nil, resp, err
+    }
+    return uResp, resp, nil
+}
+
 //https://luminatepublicapi.docs.apiary.io/#reference/connectors/v2connectorsconnectoridcommand/generate-docker-installation-commands-for-this-connector.
 func (c *Client) GetConnectorCommand(ctx context.Context, connectorConfig  ConnectorCommandRequest, connectorID string) (*ConnectorCommandResponse, *http.Response, error) { 
     
