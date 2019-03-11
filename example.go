@@ -134,7 +134,7 @@ if err != nil {
 newAppSSH := goluminate.AppSshCreateRequest{Name: "test AppC updated", Type: "SSH",IsVisible: true,IsNotificationEnabled: true}
 newAppSSH.ConnectionSettings.InternalAddress="tcp://newhost.local.com:22"
 newAppSSH.SSHSettings.UserAccounts = append(newAppSSH.SSHSettings.UserAccounts, goluminate.SshUserAccounts{Name: "ubuntu"})
-_, _, err := client.updateApp(ctx,newAppSSH, SSHApp.ID)
+_, _, err := client.UpdateApp(ctx,newAppSSH, SSHApp.ID)
 if err != nil {
    panic(err)
 }
