@@ -244,6 +244,20 @@ func (c *Client) CreateApp(ctx context.Context, newapp  interface{}) (*AppCreate
     return uResp, resp, nil
 }
 
+// https://luminatepublicapi.docs.apiary.io/#reference/applications/v2applicationsapplicationid/update-application
+func (c *Client) updateApp(ctx context.Context, app  interface{}, appID string) (*AppCreateResponse, *http.Response, error) { 
+
+    req, err := c.NewRequest("PUT", "v2/applications/"+appID, app)
+    if err != nil {
+        return nil, nil, err
+    }
+    uResp := new(AppCreateResponse)
+    resp, err := c.Do(ctx, req, uResp)
+    if err != nil {
+        return nil, resp, err
+    }
+    return uResp, resp, nil
+}
 
 
 //https://luminatepublicapi.docs.apiary.io/#reference/applications/v2applicationsapplicationidsite-bindingsiteid/assign-application-to-site
