@@ -258,3 +258,31 @@ func (c *Client) BindAppToSite(ctx context.Context, appID string, siteID string)
     }
     return resp, nil
 }
+
+// https://luminatepublicapi.docs.apiary.io/#reference/applications/v2applicationsapplicationid/get-application
+func (c *Client) GetApp(ctx context.Context, appID  string) (*http.Response, error) { 
+    
+    req, err := c.NewRequest("GET", "/v2/applications/"+appID, nil)
+    if err != nil {
+        return nil, err
+    }
+    resp, err := c.Do(ctx, req, nil)
+    if err != nil {
+        return resp, err
+    }
+    return resp, nil
+}
+
+// https://luminatepublicapi.docs.apiary.io/#reference/applications/v2applicationsapplicationid/delete-application
+func (c *Client) DeleteApp(ctx context.Context, appID  string) (*http.Response, error) { 
+    
+    req, err := c.NewRequest("DELETE", "/v2/applications/"+appID, nil)
+    if err != nil {
+        return nil, err
+    }
+    resp, err := c.Do(ctx, req, nil)
+    if err != nil {
+        return resp, err
+    }
+    return resp, nil
+}
