@@ -119,22 +119,22 @@ func main() {
     fmt.Println(applist.Content[3].ID, applist.Content[3].Name)
 
 // Update site
-site := goluminate.NewSiteRequest{Name: "updated", Description: "updated version"}
-_, _, err := client.UpdateSite(ctx,site, newSite.ID")
+updatesite := goluminate.NewSiteRequest{Name: "updated", Description: "updated version"}
+_, _, err := client.UpdateSite(ctx,updatesite, newSite.ID")
 if err != nil {
    panic(err)
 }
 // Update connector
-connector := goluminate.NewConnectorRequest{Name: "myupdate", Version: "1.0"}
-_, _, err := client.UpdateConnector(ctx,connector, newConnector.ID)
+updateconnector := goluminate.NewConnectorRequest{Name: "myupdate", Version: "1.0"}
+_, _, err := client.UpdateConnector(ctx,updateconnector, newConnector.ID)
 if err != nil {
    panic(err)
 }
 // Updated SSH App
-newAppSSH := goluminate.AppSshCreateRequest{Name: "test AppC updated", Type: "SSH",IsVisible: true,IsNotificationEnabled: true}
-newAppSSH.ConnectionSettings.InternalAddress="tcp://newhost.local.com:22"
-newAppSSH.SSHSettings.UserAccounts = append(newAppSSH.SSHSettings.UserAccounts, goluminate.SshUserAccounts{Name: "ubuntu"})
-_, _, err := client.UpdateApp(ctx,newAppSSH, SSHApp.ID)
+updateAppSSH := goluminate.AppSshCreateRequest{Name: "test AppC updated", Type: "SSH",IsVisible: true,IsNotificationEnabled: true}
+updateAppSSH.ConnectionSettings.InternalAddress="tcp://newhost.local.com:22"
+updateAppSSH.SSHSettings.UserAccounts = append(updateAppSSH.SSHSettings.UserAccounts, goluminate.SshUserAccounts{Name: "ubuntu"})
+_, _, err := client.UpdateApp(ctx,updateAppSSH, SSHApp.ID)
 if err != nil {
    panic(err)
 }
