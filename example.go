@@ -119,13 +119,13 @@ func main() {
     fmt.Println(applist.Content[3].ID, applist.Content[3].Name)
 
 // Update site
-site := NewSiteRequest{Name: "updated", Description: "updated version"}
+site := goluminate.NewSiteRequest{Name: "updated", Description: "updated version"}
 _, _, err := client.UpdateSite(ctx,site, newSite.ID")
 if err != nil {
    panic(err)
 }
 // Update connector
-connector := NewConnectorRequest{Name: "myupdate", Version: "1.0"}
+connector := goluminate.NewConnectorRequest{Name: "myupdate", Version: "1.0"}
 _, _, err := client.UpdateConnector(ctx,connector, newConnector.ID)
 if err != nil {
    panic(err)
