@@ -80,3 +80,30 @@ func (c *Client) GetConnectorCommand(ctx context.Context, connectorConfig  Conne
     return uResp, resp, nil
 }
 
+// https://luminatepublicapi.docs.apiary.io/#reference/connectors/v2connectorsconnectorid/get-connector
+func (c *Client) GetConnector(ctx context.Context, connectorID  string) (*http.Response, error) { 
+    
+    req, err := c.NewRequest("GET", "/v2/connectors/"+connectorID, nil)
+    if err != nil {
+        return nil, err
+    }
+    resp, err := c.Do(ctx, req, nil)
+    if err != nil {
+        return resp, err
+    }
+    return resp, nil
+}
+
+// https://luminatepublicapi.docs.apiary.io/#reference/connectors/v2connectorsconnectorid/delete-connector
+func (c *Client) DeleteConnector(ctx context.Context, connectorID  string) (*http.Response, error) { 
+    
+    req, err := c.NewRequest("DELETE", "/v2/connectors/"+connectorID, nil)
+    if err != nil {
+        return nil, err
+    }
+    resp, err := c.Do(ctx, req, nil)
+    if err != nil {
+        return resp, err
+    }
+    return resp, nil
+}
