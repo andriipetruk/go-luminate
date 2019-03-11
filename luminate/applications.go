@@ -245,7 +245,7 @@ func (c *Client) CreateApp(ctx context.Context, newapp  interface{}) (*AppCreate
 }
 
 // https://luminatepublicapi.docs.apiary.io/#reference/applications/v2applicationsapplicationid/update-application
-func (c *Client) updateApp(ctx context.Context, app  interface{}, appID string) (*AppCreateResponse, *http.Response, error) { 
+func (c *Client) UpdateApp(ctx context.Context, app  interface{}, appID string) (*AppCreateResponse, *http.Response, error) { 
 
     req, err := c.NewRequest("PUT", "v2/applications/"+appID, app)
     if err != nil {
