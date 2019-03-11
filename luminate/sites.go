@@ -62,3 +62,31 @@ func (c *Client) CreateSite(ctx context.Context, site  NewSiteRequest) (*NewSite
     }
     return uResp, resp, nil
 }
+
+// https://luminatepublicapi.docs.apiary.io/#reference/sites/v2sitessiteid/get-site
+func (c *Client) GetSite(ctx context.Context, siteID  string) (*http.Response, error) { 
+    
+    req, err := c.NewRequest("GET", "/v2/sites/"+siteID, nil)
+    if err != nil {
+        return nil, err
+    }
+    resp, err := c.Do(ctx, req, nil)
+    if err != nil {
+        return resp, err
+    }
+    return resp, nil
+}
+
+// https://luminatepublicapi.docs.apiary.io/#reference/sites/v2sitessiteid/delete-site
+func (c *Client) DeleteSite(ctx context.Context, siteID  string) (*http.Response, error) { 
+    
+    req, err := c.NewRequest("DELETE", "/v2/sites/"+siteID, nil)
+    if err != nil {
+        return nil, err
+    }
+    resp, err := c.Do(ctx, req, nil)
+    if err != nil {
+        return resp, err
+    }
+    return resp, nil
+}
