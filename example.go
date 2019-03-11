@@ -119,4 +119,19 @@ func main() {
     fmt.Println(applist.Content[3].ID, applist.Content[3].Name)
 
 }
+// Get info about TCP application 
+client.GetApp(ctx, TCPApp.ID)
+// Delete TCP application
+client.DeleteApp(ctx, TCPApp.ID)
+// Get connector info
+client.GetConnector(ctx, newConnector.ID)
+// Delete connector
+client.DeleteConnector(ctx, newConnector.ID)
+// Get site info
+client.GetSite(ctx, newSite.ID)
+// Delete site
+client.DeleteSite(ctx, newSite.ID)
+
+
+
 
