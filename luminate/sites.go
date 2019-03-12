@@ -80,7 +80,7 @@ func (c *Client) UpdateSite(ctx context.Context, site  NewSiteRequest, siteID st
 
 
 // https://luminatepublicapi.docs.apiary.io/#reference/sites/v2sitessiteid/get-site
-func (c *Client) GetSite(ctx context.Context, siteID  string) (NewSiteRequest, *http.Response, error) { 
+func (c *Client) GetSite(ctx context.Context, siteID  string) (*NewSiteRequest, *http.Response, error) { 
     
     req, err := c.NewRequest("GET", "/v2/sites/"+siteID, nil)
     if err != nil {
