@@ -24,6 +24,17 @@ type NewSiteRequest struct {
     MuteHealthNotification bool          `json:"mute_health_notification"`
 }
 
+type UpdateSiteRequest struct {
+    Name        string `json:"name"`
+    Description string `json:"description"`
+    Settings    struct {
+        ProxyAddress  string `json:"proxyAddress"`
+        ProxyPort     int    `json:"proxyPort"`
+        ProxyUsername string `json:"proxyUsername"`
+        ProxyPassword string `json:"proxyPassword"`
+    } `json:"settings"`
+    MuteHealthNotification bool          `json:"mute_health_notification"`
+}
 
 
 type NewSiteResponse struct {
