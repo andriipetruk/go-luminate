@@ -149,7 +149,8 @@ client.GetConnector(ctx, newConnector.ID)
 // Delete connector
 client.DeleteConnector(ctx, newConnector.ID)
 // Get site info
-client.GetSite(ctx, newSite.ID)
+site, _ ,_ := client.GetSite(ctx, newSite.ID)
+fmt.Println(site.Connectors[0])
 // Delete site
 client.DeleteSite(ctx, newSite.ID)
 }
