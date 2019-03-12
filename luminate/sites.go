@@ -24,17 +24,6 @@ type NewSiteRequest struct {
     MuteHealthNotification bool          `json:"mute_health_notification"`
 }
 
-type UpdateSiteRequest struct {
-    Name        string `json:"name"`
-    Description string `json:"description"`
-    Settings    struct {
-        ProxyAddress  string `json:"proxyAddress"`
-        ProxyPort     int    `json:"proxyPort"`
-        ProxyUsername string `json:"proxyUsername"`
-        ProxyPassword string `json:"proxyPassword"`
-    } `json:"settings"`
-    MuteHealthNotification bool          `json:"mute_health_notification"`
-}
 
 
 type NewSiteResponse struct {
@@ -75,7 +64,7 @@ func (c *Client) CreateSite(ctx context.Context, site  NewSiteRequest) (*NewSite
 }
 
 // https://luminatepublicapi.docs.apiary.io/#reference/sites/v2sitessiteid/update-site
-func (c *Client) UpdateSite(ctx context.Context, site  UpdateSiteRequest, siteID string) (*NewSiteResponse, *http.Response, error) { 
+func (c *Client) UpdateSite(ctx context.Context, site  NewSiteRequest, siteID string) (*NewSiteResponse, *http.Response, error) { 
     
     req, err := c.NewRequest("PUT", "/v2/sites/"+siteID, site)
     if err != nil {
@@ -91,17 +80,18 @@ func (c *Client) UpdateSite(ctx context.Context, site  UpdateSiteRequest, siteID
 
 
 // https://luminatepublicapi.docs.apiary.io/#reference/sites/v2sitessiteid/get-site
-func (c *Client) GetSite(ctx context.Context, siteID  string) (*http.Response, error) { 
+func (c *Client) GetSite(ctx context.Context, siteID  string) (*NewSiteRequest, *http.Response, error) { 
     
     req, err := c.NewRequest("GET", "/v2/sites/"+siteID, nil)
     if err != nil {
-        return nil, err
+        return nil, nil, err
     }
-    resp, err := c.Do(ctx, req, nil)
+    uResp := new(NewSiteRequest)
+    resp, err := c.Do(ctx, req, uResp)
     if err != nil {
-        return resp, err
+        return nil, resp, err
     }
-    return resp, nil
+    return uResp, resp, nil
 }
 
 // https://luminatepublicapi.docs.apiary.io/#reference/sites/v2sitessiteid/delete-site
